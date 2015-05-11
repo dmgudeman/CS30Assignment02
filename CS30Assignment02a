@@ -3,10 +3,11 @@
 echo""
 echo""
 echo please enter two integers seperated by a space
-
+echo ''
+PS3='Please choose from the menu'
 
 read num1 num2
-
+ansAvg=0
 summation ()
 {  min=$num1
    max=$num2
@@ -24,7 +25,6 @@ avg ()
 {
    result=0
    index=0;
-   let index="$num2-$num1"
    result=$(summation)
    sum=${result%/*}
    n=${result#*/}
@@ -36,27 +36,27 @@ OPTIONS="Even_Numbers Odd_Numbers Sum Average Quit"
    select opt in $OPTIONS; do
      if [ "$opt" = "Quit" ]; then
         
-       echo done
+        echo done
         exit
      elif [ "$opt" = "Even_Numbers" ]; then
-        COUNTER=$num1
-        while [ $COUNTER -lt $num2 ]; do
-          [ $((COUNTER%2)) -eq 0 ] && echo $COUNTER
-          let COUNTER=$COUNTER+1
-          done
+        counter=$num1
+        while [ $counter -le $num2 ]; do
+          [ $((counter%2)) -eq 0 ] && echo $counter
+          let counter=$counter+1
+        done
      elif [ "$opt" = "Odd_Numbers" ]; then
-        COUNTER=$num1
-        while [ $COUNTER -lt $num2 ]; do
-          [ $((COUNTER%2)) -ne 0 ] && echo $COUNTER
-          let COUNTER=$COUNTER+1
-          done
+        counter=$num1
+        while [ $counter -le $num2 ]; do
+           [ $((counter%2)) -ne 0 ] && echo $counter
+           let counter=$counter+1
+        done
      elif [ "$opt" = "Sum" ]; then
         result=$(summation)
         sum=${result%/*}
         echo The summation of the integer sequence is: $sum 
      elif [ "$opt" = "Average" ]; then
-        let avg1=avg
-        echo The average of these numbers is: $avg1 
+        echo The average of these numbers is:
+        avg
      else
         clear
         echo bad option
