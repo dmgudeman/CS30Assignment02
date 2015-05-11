@@ -1,0 +1,53 @@
+#!/bin/bash
+
+echo""
+echo""
+echo please enter two integers seperated by a space
+
+read num1 num2
+let num1=$num1-1
+let num2=$num2+1
+
+summation ()
+{  counter=0
+   sum1=0
+   while [ $counter -lt $num2 ]; do
+      let sum1=$sum1+$counter
+      let counter=$counter+1
+   done
+   echo $sum1
+
+}
+
+OPTIONS="Even_Numbers Odd_Numbers Sum Average Quit"
+   select opt in $OPTIONS; do
+     if [ "$opt" = "Quit" ]; then
+        
+       echo done
+        exit
+     elif [ "$opt" = "Even_Numbers" ]; then
+        COUNTER=$num1
+        while [ $COUNTER -lt $num2 ]; do
+          [ $((COUNTER%2)) -eq 0 ] && echo $COUNTER
+          let COUNTER=$COUNTER+1
+          done
+     elif [ "$opt" = "Odd_Numbers" ]; then
+        COUNTER=$num1
+        while [ $COUNTER -lt $num2 ]; do
+          [ $((COUNTER%2)) -ne 0 ] && echo $COUNTER
+          let COUNTER=$COUNTER+1
+          done
+     elif [ "$opt" = "Sum" ]; then
+        echo The summation of the integer sequence
+        summation
+        
+   #  elif [ "opt" = "Average"]; then
+#        echo The average of these numbers is 
+ #       summation 
+      else
+        clear
+        echo bad option
+     fi
+   done
+
+   
